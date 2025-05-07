@@ -1,7 +1,7 @@
 <script>
 	import { Club, Diamond, Heart, Spade } from '@lucide/svelte';
 
-	let { rank, value, suit } = $props();
+	let { class: customClass, rank, value, suit } = $props();
 </script>
 
 {#snippet cardIndex(rank, suit)}
@@ -56,7 +56,7 @@
 	{/if}
 {/snippet}
 
-<div class="[ relative h-[18rem] w-[12rem] rounded-sm ] [ bg-lsb dark:bg-dsb ]">
+<div class="[ relative h-[18rem] w-[12rem] rounded-sm ] [ bg-lsb dark:bg-dsb ] {customClass}">
 	<div class="[ absolute top-3 left-4 ]">
 		{@render cardIndex(rank, suit)}
 	</div>

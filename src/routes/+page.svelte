@@ -1,27 +1,30 @@
 <script>
 	import CardElement from '$lib/components/CardElement.svelte';
 	import CardPile from '$lib/components/CardPile.svelte';
+	import { handleWinState } from '$lib/utils/winStateHandler';
 
 	let { data } = $props();
 
-	let enemyDeck = $state(data.enemyDeck);
-	let playerDeck = $state(data.playerDeck);
+	let eDeck = $state(data.enemyDeck);
+	let pDeck = $state(data.playerDeck);
 	$effect(() => {
-		enemyDeck = data.enemyDeck || [];
-		playerDeck = data.playerDeck || [];
+		eDeck = data.enemyDeck || [];
+		pDeck = data.playerDeck || [];
 	});
 
 	let enemyPile = $state([]);
 	let playerPile = $state([]);
 
-	let eCard = $derived(enemyDeck[0] || {});
-	let pCard = $derived(playerDeck[0] || {});
+	let eCard = $derived(eDeck[0] || {});
+	let pCard = $derived(pDeck[0] || {});
+
+	let winState = $state('');
 </script>
 
 <svelte:head><title>War | Card Game</title></svelte:head>
 
-<div class="[ relative ]">
-	{#each [...enemyDeck].slice(1).reverse() as card, i}
+<div class="[ relative justify-self-center ]">
+	{#each [...eDeck].slice(1).reverse() as card, i}
 		<div
 			class="[ absolute -translate-y-1/2 -translate-x-1/2 ] [ drop-shadow-sm ]"
 			style="top: {-1 * i}px; left: {-1 * i}px; z-index: {i};"
@@ -30,11 +33,11 @@
 		</div>
 	{/each}
 </div>
-<CardElement rank={eCard.rank} value={eCard.value} suit={eCard.suit} />
+<CardElement class="justify-self-center" rank={eCard.rank} value={eCard.value} suit={eCard.suit} />
 <p></p>
 
-<div class="[ relative ]">
-	{#each [...playerDeck].slice(1).reverse() as card, i}
+<div class="[ relative justify-self-center ]">
+	{#each [...pDeck].slice(1).reverse() as card, i}
 		<div
 			class="[ absolute -translate-y-1/2 -translate-x-1/2 ] [ drop-shadow-sm ]"
 			style="top: {-1 * i}px; left: {-1 * i}px; z-index: {i};"
@@ -43,4 +46,27 @@
 		</div>
 	{/each}
 </div>
-<CardElement rank={pCard.rank} value={pCard.value} suit={pCard.suit} />
+<CardElement
+	class="justify-self-center mt-auto"
+	rank={pCard.rank}
+	value={pCard.value}
+	suit={pCard.suit}
+/>
+<div class="[ ] [ flex items-end ]">
+	<button
+		class="[ rounded-sm ] [ px-6 py-1 upper ] [ hover:cursor-pointer ] [ bg-lsb hover:bg-ltb dark:bg-dsb dark:hover:bg-dtb ]"
+		onclick={() => {
+			const {
+				eDeck: newEDeck,
+				pDeck: newPDeck,
+				winState: newWinState
+			} = handleWinState(eDeck, pDeck, eCard, pCard, winState);
+
+			eDeck = newEDeck;
+			pDeck = newPDeck;
+			winState = newWinState;
+		}}
+	>
+		flip
+	</button>
+</div>
