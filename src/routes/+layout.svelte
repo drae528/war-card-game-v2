@@ -15,4 +15,6 @@
 
 {@render children()}
 
-<ThemeToggle />
+<div class="[ absolute top-4 right-4 ]">
+	<ThemeToggle />
+</div>

@@ -61,12 +61,14 @@
 	/* dark mode */
 	--color-dmb: var(--color-mocha-base);
 	--color-dsb: var(--color-mocha-surface1);
+	--color-dtb: var(--color-mocha-surface2);
 	--color-dmt: var(--color-mocha-text);
 	--color-dst: var(--color-mocha-subtext1);
 
 	/* light mode */
 	--color-lmb: var(--color-latte-base);
 	--color-lsb: var(--color-latte-surface1);
+	--color-ltb: var(--color-latte-surface0);
 	--color-lmt: var(--color-latte-text);
 	--color-lst: var(--color-latte-subtext1);
 }
@@ -85,7 +87,7 @@
 }
 
 body {
-	@apply min-h-screen min-w-screen grid place-items-center;
+	@apply min-h-screen min-w-screen grid grid-cols-3 grid-rows-2 place-items-center;
 }
 body {
 	@apply text-2xl font-medium;
