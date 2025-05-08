@@ -11,11 +11,12 @@ web-based version of the "War" card game.
 
 ## built with
 
-- svelte
-- sveltekit
+- svelte (https://svelte.dev/)
+- sveltekit (https://svelte.dev/)
 - javascript
-- tailwindcss
-- lucide icons
+- tailwindcss (https://tailwindcss.com/)
+- lucide icons (https://lucide.dev/)
+- catppuccin color palette (https://github.com/catppuccin/catppuccin)
 
 ## installation
 
@@ -28,14 +29,14 @@ web-based version of the "War" card game.
     npm run build
     npm run preview
 
-then open your browser at 'http://localhost:4173/'
+then open your browser at (http://localhost:4173/)
 <br>(or as instructed by the terminal)
 
 ## dev mode
 
     npm run dev
 
-then open your browser at 'http://localhost:5173/'
+then open your browser at (http://localhost:5173/)
 <br>(or as instructed by the terminal)
 
 ## disclaimer
