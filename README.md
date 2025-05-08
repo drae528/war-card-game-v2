@@ -17,3 +17,7 @@ this is an improved version of a previous project.
 - `cd war-card-game-v2`
 - `npm install`
 - `npm run dev`
+
+## disclaimer
+
+the game will break sometimes, if it does, refresh.
